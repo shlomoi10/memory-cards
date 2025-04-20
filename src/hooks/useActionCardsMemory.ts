@@ -236,21 +236,21 @@ export function useActionCardsMemory(settings: MemorySettings) {
 }
 
 // קלפי פעולה - אימוג'י עין וערבוב
-const ACTION_CARDS = [
-  {
-    id: 'action-reveal-pair',
-    emoji: { shortName: 'eye', name: 'עין', src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f441.svg' },
-    type: 'action' as const,
-    actionType: 'reveal-pair' as const,
-    isOpen: false,
-    isMatched: false,
-  },
-  {
-    id: 'action-shuffle',
-    emoji: { shortName: 'shuffle', name: 'ערבוב', src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f500.svg' },
-    type: 'action' as const,
-    actionType: 'shuffle' as const,
-    isOpen: false,
-    isMatched: false,
-  },
-];
+// const ACTION_CARDS = [
+//   {
+//     id: 'action-reveal-pair',
+//     emoji: { shortName: 'eye', name: 'עין', src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f441.svg' },
+//     type: 'action' as const,
+//     actionType: 'reveal-pair' as const,
+//     isOpen: false,
+//     isMatched: false,
+//   },
+//   {
+//     id: 'action-shuffle',
+//     emoji: { shortName: 'shuffle', name: 'ערבוב', src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f500.svg' },
+//     type: 'action' as const,
+//     actionType: 'shuffle' as const,
+//     isOpen: false,
+//     isMatched: false,
+//   },
+// ];

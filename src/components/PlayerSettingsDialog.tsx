@@ -56,6 +56,7 @@ export default function PlayerSettingsDialog({ open, players, onChange, onClose,
     setLocalPlayers(updated);
   };
   const handleSave = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let changed = false;
     if (JSON.stringify(localPlayers) !== JSON.stringify(players)) {
       onChange(localPlayers);

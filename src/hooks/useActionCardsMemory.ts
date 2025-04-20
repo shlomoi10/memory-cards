@@ -135,10 +135,10 @@ export function useActionCardsMemory(settings: MemorySettings) {
           }
           setCards(prev => {
             // שומרים את כל הקלפים שאינם מכוסים במקום
-            const coveredCards = prev.filter(c => !c.isMatched && !c.isOpen && c.type === 'normal');
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const otherCards = prev.filter(c => c.isMatched || c.isOpen || c.type === 'action');
             // ממקמים את הקלפים המכוסים החדשים במקומות אקראיים
-            const shuffledCards = shuffled.map(id => coveredCards.find(c => c.id === id)!);
+            const shuffledCards = shuffled.map(id => covered.find(c => c.id === id)!);
             // שומרים את הסדר: ממזגים את הקלפים האחרים עם הקלפים המעורבבים במקומות הנכונים
             let result: Card[] = [];
             let coveredIdx = 0;
@@ -202,6 +202,11 @@ export function useActionCardsMemory(settings: MemorySettings) {
     return newCards;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type ShufflableCard = Card & {
+    shuffleId?: string;
+  };
+
   return {
     cards,
     flipped,
@@ -228,11 +233,6 @@ export function useActionCardsMemory(settings: MemorySettings) {
     setTimer,
     setStartTime
   };
-}
-
-// הרחבת טיפוס Card עם shuffleId (אופציונלי) לצורך ערבוב
-interface ShufflableCard extends Card {
-  shuffleId?: string;
 }
 
 // קלפי פעולה - אימוג'י עין וערבוב

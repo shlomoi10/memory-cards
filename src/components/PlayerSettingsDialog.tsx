@@ -56,27 +56,20 @@ export default function PlayerSettingsDialog({ open, players, onChange, onClose,
     setLocalPlayers(updated);
   };
   const handleSave = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let changed = false;
     if (JSON.stringify(localPlayers) !== JSON.stringify(players)) {
       onChange(localPlayers);
-      changed = true;
     }
     if (onCardOrientationChange && localOrientation !== cardOrientation) {
       onCardOrientationChange(localOrientation);
-      changed = true;
     }
     if (onCardNameModeChange && localCardNameMode !== cardNameMode) {
       onCardNameModeChange(localCardNameMode);
-      changed = true;
     }
     if (onSpacingModeChange && localSpacingMode !== spacingMode) {
       onSpacingModeChange(localSpacingMode);
-      changed = true;
     }
     if (onCardSizeModeChange && localCardSizeMode !== cardSizeMode) {
       onCardSizeModeChange(localCardSizeMode);
-      changed = true;
     }
     onClose();
   };

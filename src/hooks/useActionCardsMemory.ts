@@ -192,8 +192,8 @@ export function useActionCardsMemory(settings: MemorySettings) {
       newCards.push({ id: `${i}-a`, emoji: emojis[i], type: 'normal', isOpen: false, isMatched: false });
       newCards.push({ id: `${i}-b`, emoji: emojis[i], type: 'normal', isOpen: false, isMatched: false });
     }
-    newCards.push({ ...ACTION_CARDS[0] });
-    newCards.push({ ...ACTION_CARDS[1] });
+    // newCards.push({ ...ACTION_CARDS[0] }); // הוסר זמנית
+    // newCards.push({ ...ACTION_CARDS[1] }); // הוסר זמנית
     // ערבוב
     for (let i = newCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

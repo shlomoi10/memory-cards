@@ -1,6 +1,6 @@
 import { Card, Player, MemorySettings } from '../core/BaseMemory';
 import { getAvailableEmojis } from '../utils/EmojiHelper';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // שכפול מהוק קלאסי - יותאם לכללי "קלפי קסם" בהמשך
 export function useExperimentalMagicCardsMemory(settings: MemorySettings) {
@@ -19,6 +19,27 @@ export function useExperimentalMagicCardsMemory(settings: MemorySettings) {
   const MAGIC_TYPES = ['reveal-pair-v2', 'shuffle-v2'] as const;
   type MagicType = typeof MAGIC_TYPES[number];
 
+  const generateExperimentalMagicCards = useCallback((numPairs: number): Card[] => {
+    const emojis = getAvailableEmojis(numPairs - 2);
+    let cards: Card[] = [];
+    emojis.forEach((emoji, i) => {
+      cards.push({ id: `${i}-a`, emoji, type: 'normal', isOpen: false, isMatched: false });
+      cards.push({ id: `${i}-b`, emoji, type: 'normal', isOpen: false, isMatched: false });
+    });
+    // מוסיפים 2 זוגות קלפי קסם
+    for (let i = 0; i < 2; i++) {
+      const expMagic: MagicType = MAGIC_TYPES[i % 2];
+      cards.push({ id: `magic${i}-a`, emoji: { shortName: 'star', name: 'כוכב', src: 'https://cdn.jsdelivr.net/npm/openmoji@14.0.0/color/svg/2B50.svg' }, type: 'magic', magicType: expMagic, isOpen: false, isMatched: false });
+      cards.push({ id: `magic${i}-b`, emoji: { shortName: 'star', name: 'כוכב', src: 'https://cdn.jsdelivr.net/npm/openmoji@14.0.0/color/svg/2B50.svg' }, type: 'magic', magicType: expMagic, isOpen: false, isMatched: false });
+    }
+    // ערבוב
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    return cards;
+  }, [getAvailableEmojis]);
+
   useEffect(() => {
     const numPairs = settings.numPairs || 8;
     setCards(generateExperimentalMagicCards(numPairs));
@@ -28,7 +49,7 @@ export function useExperimentalMagicCardsMemory(settings: MemorySettings) {
     setCurrentPlayer(settings.currentPlayer);
     setWinner(null);
     setIsPopupOpen(false);
-  }, [settings.numPairs, settings.currentPlayer, settings.players]);
+  }, [settings.numPairs, settings.currentPlayer, settings.players, generateExperimentalMagicCards]);
 
   useEffect(() => {
     setMoves(0);
@@ -94,27 +115,6 @@ export function useExperimentalMagicCardsMemory(settings: MemorySettings) {
 
   const pairsFound = cards.filter(card => card.isMatched).length / 2;
   const totalPairs = cards.length / 2;
-
-  function generateExperimentalMagicCards(numPairs: number): Card[] {
-    const emojis = getAvailableEmojis(numPairs - 2);
-    let cards: Card[] = [];
-    emojis.forEach((emoji, i) => {
-      cards.push({ id: `${i}-a`, emoji, type: 'normal', isOpen: false, isMatched: false });
-      cards.push({ id: `${i}-b`, emoji, type: 'normal', isOpen: false, isMatched: false });
-    });
-    // מוסיפים 2 זוגות קלפי קסם
-    for (let i = 0; i < 2; i++) {
-      const expMagic: MagicType = MAGIC_TYPES[i % 2];
-      cards.push({ id: `magic${i}-a`, emoji: { shortName: 'star', name: 'כוכב', src: 'https://cdn.jsdelivr.net/npm/openmoji@14.0.0/color/svg/2B50.svg' }, type: 'magic', magicType: expMagic, isOpen: false, isMatched: false });
-      cards.push({ id: `magic${i}-b`, emoji: { shortName: 'star', name: 'כוכב', src: 'https://cdn.jsdelivr.net/npm/openmoji@14.0.0/color/svg/2B50.svg' }, type: 'magic', magicType: expMagic, isOpen: false, isMatched: false });
-    }
-    // ערבוב
-    for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
-    return cards;
-  }
 
   function onMagicCardClick(cardId: string) {
     if (experimentalLockBoard) return;
@@ -225,23 +225,3 @@ export function useExperimentalMagicCardsMemory(settings: MemorySettings) {
     setStartTime
   };
 }
-
-// קלפי קסם - אימוג'י עין וערבוב
-const EXPERIMENTAL_MAGIC_CARDS = [
-  {
-    id: 'magic-reveal-pair-v2',
-    emoji: { shortName: 'eye', name: 'עין', src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f441.svg' },
-    type: 'magic' as const,
-    magicType: 'reveal-pair-v2' as const,
-    isOpen: false,
-    isMatched: false,
-  },
-  {
-    id: 'magic-shuffle-v2',
-    emoji: { shortName: 'shuffle', name: 'ערבוב', src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f500.svg' },
-    type: 'magic' as const,
-    magicType: 'shuffle-v2' as const,
-    isOpen: false,
-    isMatched: false,
-  },
-];

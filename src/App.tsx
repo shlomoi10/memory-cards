@@ -10,7 +10,7 @@ import PanelButtons from './components/PanelButtons';
 import { useClassicMemory } from './hooks/useClassicMemory';
 import { useCumulativeScoreMemory } from './hooks/useCumulativeScoreMemory';
 import { useLowScoreMemory } from './hooks/useLowScoreMemory';
-// import { useActionCardsMemory } from './hooks/useActionCardsMemory'; // הקובץ כבר לא מודול תקני
+import { useExperimentalMagicCardsMemory } from './hooks/useActionCardsMemory';
 import { GAME_RULES } from './constants/gameRules';
 import { MemorySettings, Player } from './core/BaseMemory';
 import './AppButtons.css';
@@ -23,7 +23,7 @@ const defaultPlayers: Player[] = [
 const gameVariants = [
   { key: 'classic', name: 'זיכרון קלאסי', hook: useClassicMemory },
   { key: 'cumulative', name: 'ניקוד מצטבר', hook: useCumulativeScoreMemory },
-  // { key: 'action', name: 'קלפי פעולה', hook: useActionCardsMemory },
+  { key: 'magic', name: 'קלפי קסם', hook: useExperimentalMagicCardsMemory },
   { key: 'lowscore', name: 'ניקוד נמוך', hook: useLowScoreMemory },
 ];
 
@@ -56,14 +56,14 @@ export default function App() {
   // כל hook של משחק יקבל תמיד את settings המשותף
   const classic = useClassicMemory(settings);
   const cumulative = useCumulativeScoreMemory(settings);
+  const magic = useExperimentalMagicCardsMemory(settings);
   const lowscore = useLowScoreMemory(settings);
-  // const action = useActionCardsMemory(settings);
 
   const variantMap: Record<string, any> = {
     classic,
     cumulative,
+    magic,
     lowscore,
-    // action,
   };
 
   const extendedGameVariants = [

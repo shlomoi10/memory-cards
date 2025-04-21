@@ -140,9 +140,9 @@ export default function MemoryCard({ card, onClick, backColor, disabled, orienta
                   </Box>
                 </Box>
               )}
-              {card.type === 'action' && (
+              {card.type === 'magic' && (
                 <Typography variant="caption" color="primary" sx={{ display: 'block', fontWeight: 700, fontSize: 13, mt: 0.5 }}>
-                  {card.actionType === 'reveal-pair' ? 'קלף פעולה: גלה זוג' : card.actionType === 'shuffle' ? 'קלף פעולה: ערבב' : ''}
+                  {card.magicType === 'reveal-pair-v2' ? 'קלף קסם: גלה זוג' : card.magicType === 'shuffle-v2' ? 'קלף קסם: ערבב' : ''}
                 </Typography>
               )}
             </Box>

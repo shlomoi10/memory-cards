@@ -8,8 +8,8 @@ export interface EmojiItem {
 export interface Card {
   id: string;
   emoji: EmojiItem; // היה string, כעת אובייקט
-  type: 'normal' | 'action';
-  actionType?: 'reveal-pair' | 'shuffle' | 'extra-turn' | 'lose-turn';
+  type: 'normal' | 'magic';
+  magicType?: 'reveal-pair-v2' | 'shuffle-v2' | 'extra-turn-v2' | 'lose-turn-v2';
   category?: string;
   isOpen: boolean;
   isMatched: boolean;

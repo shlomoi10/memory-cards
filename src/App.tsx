@@ -23,7 +23,7 @@ const defaultPlayers: Player[] = [
 const gameVariants = [
   { key: 'classic', name: 'זיכרון קלאסי', hook: useClassicMemory },
   { key: 'cumulative', name: 'ניקוד מצטבר', hook: useCumulativeScoreMemory },
-  { key: 'action', name: 'קלפי פעולה', hook: useActionCardsMemory },
+  { key: 'actioncards', name: 'קלפי פעולה', hook: useActionCardsMemory },
 ];
 
 export default function App() {
@@ -62,7 +62,7 @@ export default function App() {
     classic,
     cumulative,
     lowscore,
-    action,
+    actioncards: action,
   };
 
   const extendedGameVariants = [
@@ -111,7 +111,11 @@ export default function App() {
   };
 
   const handleBackToHome = () => {
-    setTimeout(() => setSelectedGame(null), 0); // עבור לדף הבית אחרי סגירה
+    // אפס משחק וטיימר לפני חזרה לדף הבית
+    if (gameHookResult && gameHookResult.reset) {
+      gameHookResult.reset();
+    }
+    setTimeout(() => setSelectedGame(null), 0); // עבור לדף הבית אחרי reset
   };
 
   const handleRestart = () => {

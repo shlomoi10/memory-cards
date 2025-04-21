@@ -38,7 +38,7 @@ export function useExperimentalMagicCardsMemory(settings: MemorySettings) {
       [cards[i], cards[j]] = [cards[j], cards[i]];
     }
     return cards;
-  }, [getAvailableEmojis]);
+  }, []);
 
   useEffect(() => {
     const numPairs = settings.numPairs || 8;

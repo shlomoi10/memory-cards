@@ -16,10 +16,10 @@ export function useExperimentalMagicCardsMemory(settings: MemorySettings) {
   const [timer, setTimer] = useState('00:00');
   const [experimentalShuffleAnim, setExperimentalShuffleAnim] = useState(false);
 
-  const MAGIC_TYPES = ['reveal-pair-v2', 'shuffle-v2'] as const;
-  type MagicType = typeof MAGIC_TYPES[number];
+  type MagicType = 'reveal-pair-v2' | 'shuffle-v2';
 
   const generateExperimentalMagicCards = useCallback((numPairs: number): Card[] => {
+    const MAGIC_TYPES = ['reveal-pair-v2', 'shuffle-v2'] as const;
     const emojis = getAvailableEmojis(numPairs - 2);
     let cards: Card[] = [];
     emojis.forEach((emoji, i) => {

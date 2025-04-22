@@ -39,6 +39,8 @@ export default function MemoryCard({ card, onClick, backColor, disabled, orienta
   }
   // שינוי: גודל אימוג'י ותגית תלוי בגודל הקלף
   if (cardSizeMode === 'small') {
+    width = Math.round(width * 0.7); // הקטן את כל הכרטיס ב-30%
+    height = Math.round(height * 0.7);
     emojiSize = Math.round(Math.max(22, Math.min(44, width * 0.32)));
     nameFontSize = 13;
   } else {
@@ -140,11 +142,7 @@ export default function MemoryCard({ card, onClick, backColor, disabled, orienta
                   </Box>
                 </Box>
               )}
-              {card.type === 'action' && (
-                <Typography variant="caption" color="primary" sx={{ display: 'block', fontWeight: 700, fontSize: 13, mt: 0.5 }}>
-                  {card.actionType === 'reveal-pair' ? 'קלף פעולה: גלה זוג' : card.actionType === 'shuffle' ? 'קלף פעולה: ערבב' : ''}
-                </Typography>
-              )}
+              {card.type === 'action' && null}
             </Box>
           ) : (
             // גב קלף: עיצוב מודרני עם אלמנט דינאמי

@@ -35,7 +35,7 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
           exclusive
           onChange={(_, value) => value && onChange(value)}
           color="primary"
-          sx={{ direction: 'rtl', gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 230 }}
+          sx={{ direction: 'rtl', gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 199 }}
         >
           {orientationOptions.map((item, idx, arr) => (
             <ToggleButton
@@ -155,7 +155,7 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
           exclusive
           onChange={(_, v) => v && onCardSizeModeChange?.(v)}
           color="primary"
-          sx={{ gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 230 }}
+          sx={{ gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 199 }}
         >
           {[{ value: 'default', label: 'רגיל' }, { value: 'small', label: 'קטנה' }].map((item, idx, arr) => (
             <ToggleButton

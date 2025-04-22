@@ -108,28 +108,94 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>
-      <Box sx={{ mt: 3 }}>
-        <Typography sx={{ fontWeight: 700, fontSize: 18, mb: 1, color: '#1976d2' }}>מרווח קלפים</Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2, flexDirection: 'row' }}>
+        <Typography sx={{ fontWeight: 700, fontSize: 16, fontFamily: 'Heebo, Varela Round, Arial, sans-serif' }}>מרווח קלפים</Typography>
         <ToggleButtonGroup
           value={spacingMode}
           exclusive
           onChange={(_, v) => v && onSpacingModeChange?.(v)}
-          sx={{ direction: 'rtl', mb: 1 }}
+          color="primary"
+          sx={{ direction: 'rtl', gap: 1, bgcolor: 'transparent' }}
         >
-          <ToggleButton value="default">ברירת מחדל</ToggleButton>
-          <ToggleButton value="compact">צפופה</ToggleButton>
+          <ToggleButton value="default" sx={{
+            fontWeight: 700,
+            fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
+            px: 4,
+            py: 1.2,
+            borderRadius: '0 99px 99px 0',
+            fontSize: 16,
+            border: '2px solid #e3f0ff',
+            bgcolor: spacingMode === 'default' ? '#e3f0ff' : '#fff',
+            color: spacingMode === 'default' ? '#1976d2' : '#1976d2',
+            boxShadow: spacingMode === 'default' ? '0 2px 8px #1976d244' : 'none',
+            mx: 0.5,
+            transition: 'all 0.18s',
+            '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
+          }}>
+            ברירת מחדל
+          </ToggleButton>
+          <ToggleButton value="compact" sx={{
+            fontWeight: 700,
+            fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
+            px: 4,
+            py: 1.2,
+            borderRadius: '99px 0 0 99px',
+            fontSize: 16,
+            border: '2px solid #e3f0ff',
+            bgcolor: spacingMode === 'compact' ? '#e3f0ff' : '#fff',
+            color: spacingMode === 'compact' ? '#1976d2' : '#1976d2',
+            boxShadow: spacingMode === 'compact' ? '0 2px 8px #1976d244' : 'none',
+            mx: 0.5,
+            transition: 'all 0.18s',
+            '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
+          }}>
+            צפופה
+          </ToggleButton>
         </ToggleButtonGroup>
       </Box>
-      <Box sx={{ mt: 3 }}>
-        <Typography sx={{ fontWeight: 700, fontSize: 18, mb: 1, color: '#1976d2' }}>גודל קלף</Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2, flexDirection: 'row' }}>
+        <Typography sx={{ fontWeight: 700, fontSize: 16, fontFamily: 'Heebo, Varela Round, Arial, sans-serif' }}>גודל קלף</Typography>
         <ToggleButtonGroup
           value={cardSizeMode}
           exclusive
           onChange={(_, v) => v && onCardSizeModeChange?.(v)}
-          sx={{ direction: 'rtl', mb: 1 }}
+          color="primary"
+          sx={{ direction: 'rtl', gap: 1, bgcolor: 'transparent' }}
         >
-          <ToggleButton value="default">רגיל</ToggleButton>
-          <ToggleButton value="small">קטנה</ToggleButton>
+          <ToggleButton value="default" sx={{
+            fontWeight: 700,
+            fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
+            px: 4,
+            py: 1.2,
+            borderRadius: '0 99px 99px 0',
+            fontSize: 16,
+            border: '2px solid #e3f0ff',
+            bgcolor: cardSizeMode === 'default' ? '#e3f0ff' : '#fff',
+            color: cardSizeMode === 'default' ? '#1976d2' : '#1976d2',
+            boxShadow: cardSizeMode === 'default' ? '0 2px 8px #1976d244' : 'none',
+            mx: 0.5,
+            transition: 'all 0.18s',
+            '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
+          }}>
+            רגיל
+          </ToggleButton>
+          <ToggleButton value="small" sx={{
+            fontWeight: 700,
+            fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
+            px: 4,
+            py: 1.2,
+            borderRadius: '99px 0 0 99px',
+            fontSize: 16,
+            border: '2px solid #e3f0ff',
+            bgcolor: cardSizeMode === 'small' ? '#e3f0ff' : '#fff',
+            color: cardSizeMode === 'small' ? '#1976d2' : '#1976d2',
+            boxShadow: cardSizeMode === 'small' ? '0 2px 8px #1976d244' : 'none',
+            mx: 0.5,
+            transition: 'all 0.18s',
+            '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
+          }}>
+            קטנה
+          </ToggleButton>
         </ToggleButtonGroup>
       </Box>
     </Box>

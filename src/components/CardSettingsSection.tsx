@@ -17,6 +17,12 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
+  // מחזיר את סדר ה-RTL: 'אורך' (portrait) ראשון, 'רוחב' (landscape) שני
+  const orientationOptions = [
+    { value: 'portrait', label: 'אורך' },
+    { value: 'landscape', label: 'רוחב' },
+  ];
+
   return (
     <Box sx={{ my: 2, p: 2, bgcolor: 'rgba(227,240,255,0.24)', borderRadius: 4, border: '1.5px solid #e3f0ff' }}>
       <Typography variant="subtitle1" sx={{ fontWeight: 800, color: '#1976d2', mb: 1, fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontSize: 18 }}>
@@ -29,29 +35,30 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
           exclusive
           onChange={(_, value) => value && onChange(value)}
           color="primary"
-          sx={{ gap: 1, bgcolor: 'transparent', borderRadius: 99, boxShadow: '0 2px 12px #1976d244', overflow: 'hidden' }}
+          sx={{ direction: 'rtl', gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 230 }}
         >
-          {[{ value: 'portrait', label: 'אורך' }, { value: 'landscape', label: 'רוחב' }].map((item, idx, arr) => (
+          {orientationOptions.map((item, idx, arr) => (
             <ToggleButton
               key={item.value}
               value={item.value}
               sx={{
+                minWidth: 110,
+                px: 4,
                 fontWeight: 700,
                 fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
-                px: 4,
                 py: 1.2,
                 borderRadius:
                   idx === 0
-                    ? '0 99px 99px 0'
-                    : idx === arr.length - 1
                     ? '99px 0 0 99px'
-                    : '0',
-                fontSize: 16,
-                border: 'none', // מסיר מסגרת כחולה
-                bgcolor: orientation === item.value ? '#e3f0ff' : '#fff',
+                    : idx === arr.length - 1
+                    ? '0 99px 99px 0'
+                    : 0,
+                border: 'none',
+                borderLeft: idx > 0 ? '1.5px solid #e3f0ff' : 'none',
+                bgcolor: orientation === item.value ? '#e3f0ff' : 'transparent',
                 color: orientation === item.value ? '#1976d2' : '#1976d2',
-                boxShadow: orientation === item.value ? '0 2px 8px #1976d244' : 'none',
-                mx: 0.5,
+                boxShadow: 'none',
+                mx: 0,
                 transition: 'all 0.18s',
                 '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
               }}
@@ -68,29 +75,30 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
           exclusive
           onChange={(_, value) => value && onCardNameModeChange(value)}
           color="primary"
-          sx={{ direction: 'rtl', gap: 1, bgcolor: 'transparent', borderRadius: 99, boxShadow: '0 2px 12px #1976d244', overflow: 'hidden' }}
+          sx={{ gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 230 }}
         >
           {[{ value: 'default', label: 'ברירת מחדל' }, { value: 'none', label: 'בלי שם' }].map((item, idx, arr) => (
             <ToggleButton
               key={item.value}
               value={item.value}
               sx={{
+                minWidth: 110,
+                px: 4,
                 fontWeight: 700,
                 fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
-                px: 4,
                 py: 1.2,
                 borderRadius:
                   idx === 0
-                    ? '0 99px 99px 0'
-                    : idx === arr.length - 1
                     ? '99px 0 0 99px'
-                    : '0',
-                fontSize: 16,
-                border: 'none', // מסיר מסגרת כחולה
-                bgcolor: cardNameMode === item.value ? '#e3f0ff' : '#fff',
+                    : idx === arr.length - 1
+                    ? '0 99px 99px 0'
+                    : 0,
+                border: 'none',
+                borderLeft: idx > 0 ? '1.5px solid #e3f0ff' : 'none',
+                bgcolor: cardNameMode === item.value ? '#e3f0ff' : 'transparent',
                 color: cardNameMode === item.value ? '#1976d2' : '#1976d2',
-                boxShadow: cardNameMode === item.value ? '0 2px 8px #1976d244' : 'none',
-                mx: 0.5,
+                boxShadow: 'none',
+                mx: 0,
                 transition: 'all 0.18s',
                 '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
               }}
@@ -107,29 +115,30 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
           exclusive
           onChange={(_, v) => v && onSpacingModeChange?.(v)}
           color="primary"
-          sx={{ direction: 'rtl', gap: 1, bgcolor: 'transparent', borderRadius: 99, boxShadow: '0 2px 12px #1976d244', overflow: 'hidden' }}
+          sx={{ gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 230 }}
         >
           {[{ value: 'default', label: 'ברירת מחדל' }, { value: 'compact', label: 'צפופה' }].map((item, idx, arr) => (
             <ToggleButton
               key={item.value}
               value={item.value}
               sx={{
+                minWidth: 110,
+                px: 4,
                 fontWeight: 700,
                 fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
-                px: 4,
                 py: 1.2,
                 borderRadius:
                   idx === 0
-                    ? '0 99px 99px 0'
-                    : idx === arr.length - 1
                     ? '99px 0 0 99px'
-                    : '0',
-                fontSize: 16,
-                border: 'none', // מסיר מסגרת כחולה
-                bgcolor: spacingMode === item.value ? '#e3f0ff' : '#fff',
+                    : idx === arr.length - 1
+                    ? '0 99px 99px 0'
+                    : 0,
+                border: 'none',
+                borderLeft: idx > 0 ? '1.5px solid #e3f0ff' : 'none',
+                bgcolor: spacingMode === item.value ? '#e3f0ff' : 'transparent',
                 color: spacingMode === item.value ? '#1976d2' : '#1976d2',
-                boxShadow: spacingMode === item.value ? '0 2px 8px #1976d244' : 'none',
-                mx: 0.5,
+                boxShadow: 'none',
+                mx: 0,
                 transition: 'all 0.18s',
                 '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
               }}
@@ -146,29 +155,30 @@ export default function CardSettingsSection({ orientation, onChange, cardNameMod
           exclusive
           onChange={(_, v) => v && onCardSizeModeChange?.(v)}
           color="primary"
-          sx={{ direction: 'rtl', gap: 1, bgcolor: 'transparent', borderRadius: 99, boxShadow: '0 2px 12px #1976d244', overflow: 'hidden' }}
+          sx={{ gap: 0, bgcolor: '#fff', borderRadius: 99, border: '1.5px solid #e3f0ff', boxShadow: '0 2px 12px #1976d244', overflow: 'hidden', minWidth: 230 }}
         >
           {[{ value: 'default', label: 'רגיל' }, { value: 'small', label: 'קטנה' }].map((item, idx, arr) => (
             <ToggleButton
               key={item.value}
               value={item.value}
               sx={{
+                minWidth: 110,
+                px: 4,
                 fontWeight: 700,
                 fontFamily: 'Heebo, Varela Round, Arial, sans-serif',
-                px: 4,
                 py: 1.2,
                 borderRadius:
                   idx === 0
-                    ? '0 99px 99px 0'
-                    : idx === arr.length - 1
                     ? '99px 0 0 99px'
-                    : '0',
-                fontSize: 16,
-                border: 'none', // מסיר מסגרת כחולה
-                bgcolor: cardSizeMode === item.value ? '#e3f0ff' : '#fff',
+                    : idx === arr.length - 1
+                    ? '0 99px 99px 0'
+                    : 0,
+                border: 'none',
+                borderLeft: idx > 0 ? '1.5px solid #e3f0ff' : 'none',
+                bgcolor: cardSizeMode === item.value ? '#e3f0ff' : 'transparent',
                 color: cardSizeMode === item.value ? '#1976d2' : '#1976d2',
-                boxShadow: cardSizeMode === item.value ? '0 2px 8px #1976d244' : 'none',
-                mx: 0.5,
+                boxShadow: 'none',
+                mx: 0,
                 transition: 'all 0.18s',
                 '&:hover': { bgcolor: '#e3f0ff', borderColor: '#1976d2' },
               }}

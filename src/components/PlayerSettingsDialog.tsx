@@ -111,38 +111,53 @@ export default function PlayerSettingsDialog({ open, players, onChange, onClose,
         maxWidth: 530,
         mx: 'auto',
       }}>
-        <Box sx={{ p: 3, pb: 2, borderBottom: '2px solid #e3f0ff' }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 900, color: '#1976d2', mb: 2, fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontSize: 20, letterSpacing: 0.5 }}>
-            הגדרות שחקנים
-          </Typography>
-          <Grid container spacing={3} className="player-settings-grid">
-            {localPlayers.map((player, idx) => (
-              <Grid item xs={12} key={idx} className="player-settings-row">
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 0.5, direction: 'rtl' }}>
-                  <label className="player-settings-label" style={{fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontWeight: 800, fontSize: '1.08rem', color: '#1976d2', marginBottom: 2, alignSelf: 'flex-start'}}>
-                    {`שם שחקן ${idx + 1}`}
-                  </label>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: '100%', flexDirection: 'row' }}>
-                    <PlayerColorPicker
-                      value={player.color}
-                      options={colorOptions}
-                      onChange={color => handleColorChange(idx, color)}
-                      ariaLabel={`בחר צבע עבור שחקן ${idx + 1}`}
-                    />
-                    <TextField
-                      value={player.name}
-                      onChange={e => handleNameChange(idx, e.target.value)}
-                      className="player-settings-input"
-                      variant="outlined"
-                      size="small"
-                      sx={{ minWidth: 140, flex: 1, fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontWeight: 700, direction: 'rtl' }}
-                      inputProps={{ style: { fontWeight: 700, direction: 'rtl', fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontSize: '1.18rem' } }}
-                    />
+        {/* הגדרות שחקנים בקפסולה נפרדת */}
+        <Box sx={{
+          mt: 2,
+          mb: 2,
+          bgcolor: 'rgba(227,240,255,0.24)',
+          borderRadius: 2,
+          border: '1.5px solid #e3f0ff',
+          minWidth: 390,
+          maxWidth: 530,
+          ml: 3,
+          mr: 3,
+          p: 2,
+        }}>
+          {/* בוקס פנימי */}
+          <Box sx={{ p: '2px', maxWidth: 480, ml: 'auto', mr: 'auto', width: '100%' }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 900, color: '#1976d2', mb: 2, fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontSize: 20, letterSpacing: 0.5 }}>
+              הגדרות שחקנים
+            </Typography>
+            <Grid container spacing={3} className="player-settings-grid">
+              {localPlayers.map((player, idx) => (
+                <Grid item xs={12} key={idx} className="player-settings-row" sx={{ maxWidth: 420, mx: 'auto', width: '100%' }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 0.5, direction: 'rtl' }}>
+                    <label className="player-settings-label" style={{fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontWeight: 800, fontSize: '1.08rem', color: '#1976d2', marginBottom: 2, alignSelf: 'flex-start'}}>
+                      {`שם שחקן ${idx + 1}`}
+                    </label>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: '100%', flexDirection: 'row' }}>
+                      <PlayerColorPicker
+                        value={player.color}
+                        options={colorOptions}
+                        onChange={color => handleColorChange(idx, color)}
+                        ariaLabel={`בחר צבע עבור שחקן ${idx + 1}`}
+                      />
+                      <TextField
+                        value={player.name}
+                        onChange={e => handleNameChange(idx, e.target.value)}
+                        className="player-settings-input"
+                        variant="outlined"
+                        size="small"
+                        sx={{ minWidth: 140, flex: 1, fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontWeight: 700, direction: 'rtl' }}
+                        inputProps={{ style: { fontWeight: 700, direction: 'rtl', fontFamily: 'Heebo, Varela Round, Arial, sans-serif', fontSize: '1.18rem' } }}
+                      />
+                    </Box>
                   </Box>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
         </Box>
         <Box sx={{ p: 3, pt: 2 }}>
           <CardSettingsSection 
